@@ -1,0 +1,31 @@
+FROM elixir:1.5
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Create and set home directory
+WORKDIR /opt/app
+
+# Create user
+ARG uid=1000
+ARG gid=1000
+
+# Create user if not exists
+RUN getent group $gid || groupadd --gid $gid elixir
+RUN getent passwd $uid || useradd -m -u $uid -g $gid elixir
+
+# Allow user to write
+RUN chown -R $uid:$gid /opt/app
+USER $uid
+
+# Install hex (Elixir package manager)
+RUN mix local.hex --force
+
+# Install rebar (Erlang build tool)
+RUN mix local.rebar --force
+
+USER root
+
+## Install NodeJS 6.x and the NPM
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
+	apt-get install -y nodejs && \
+	npm install npm@latest -g

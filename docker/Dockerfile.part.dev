@@ -1,0 +1,10 @@
+USER root
+
+RUN apt-get install -y inotify-tools
+
+WORKDIR /opt/app/PROJ_NAME
+USER $uid
+
+# Run the application itself
+COPY /scripts/docker-dev.sh /docker-dev.sh
+CMD /docker-dev.sh

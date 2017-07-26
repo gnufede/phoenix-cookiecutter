@@ -1,0 +1,7 @@
+# Preparation artifacts
+docker/Dockerfile.dev
+docker/Dockerfile.bootstrap
+build
+env/bootstrap/config_db
+env/bootstrap/created
+env/bootstrap/prepare_json
