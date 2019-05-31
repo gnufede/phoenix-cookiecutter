@@ -16,7 +16,7 @@ env/bootstrap/config_db: env/bootstrap/created scripts/config_db.sh
 
 docker/Dockerfile.dev: docker/Dockerfile.part.base docker/Dockerfile.part.dev
 	cat docker/Dockerfile.part.base docker/Dockerfile.part.dev > docker/Dockerfile.dev
-	sed -i "s/PROJ_NAME/$(proj_name)/ig" docker/Dockerfile.dev
+	sed -i'' -e "s/PROJ_NAME/$(proj_name)/ig" docker/Dockerfile.dev
 
 build: docker/Dockerfile.dev env/dev/docker-compose.yml scripts/docker-dev.sh
 	docker-compose -f env/dev/docker-compose.yml build
