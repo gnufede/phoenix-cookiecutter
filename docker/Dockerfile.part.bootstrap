@@ -1,7 +1,7 @@
 USER $uid
 
 # Install phoenix
-RUN mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phx_new.ez
+RUN mix archive.install --force hex phx_new 1.4.6
 
 COPY /scripts/docker-bootstrap.sh /docker-bootstrap.sh
 CMD /docker-bootstrap.sh
